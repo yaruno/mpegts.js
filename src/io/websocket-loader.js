@@ -19,6 +19,7 @@
 import Log from '../utils/logger.js';
 import {BaseLoader, LoaderStatus, LoaderErrors} from './loader.js';
 import {RuntimeException} from '../utils/exception.js';
+import {StreamrClient} from 'streamr-client';
 
 // For MPEG-TS/FLV over WebSocket live stream
 class WebSocketLoader extends BaseLoader {
@@ -40,6 +41,8 @@ class WebSocketLoader extends BaseLoader {
         this._ws = null;
         this._requestAbort = false;
         this._receivedLength = 0;
+        //test out instantiating streamr client
+        this._client = new StreamrClient();
     }
 
     destroy() {
