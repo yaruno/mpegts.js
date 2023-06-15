@@ -8,7 +8,7 @@
         "experimentalDecorators": true,
         "declaration": true,
         "declarationDir": "./d.ts/",
-        "lib": ["dom", "es5", "es2015.promise", "es2015.collection","es2021"]
+        "lib": ["dom", "es5", "es2015.promise", "es2015.collection","esnext"]
     },
     "include": [
         "./src/**/*",
