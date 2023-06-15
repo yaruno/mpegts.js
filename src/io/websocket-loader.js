@@ -42,7 +42,7 @@ class WebSocketLoader extends BaseLoader {
         this._requestAbort = false;
         this._receivedLength = 0;
         //test out instantiating streamr client
-        this._client = new StreamrClient();
+        this._client = null
     }
 
     destroy() {
@@ -52,14 +52,36 @@ class WebSocketLoader extends BaseLoader {
         super.destroy();
     }
 
-    open(dataSource) {
+    async open(dataSource) {
         try {
-            let ws = this._ws = new self.WebSocket(dataSource.url);
+            let streamr = this._client = new StreamrClient()
+            let streamrClient = await new StreamrClient({
+                auth: {
+                  privateKey: "0x297882d5156658f9ba55d2269287c47d7c502557580fe1d2a55b82da25ee8272",
+                })
+            const streamId = "0x14Ee183938ef7b3b071072CfCAb16D2a0D37B39D/uniclip"
+            console.log(streamrClient)
+            streamrClient.subscribe(streamId, (message) => {
+                console.log(message)
+            })
+            streamrClient.subscribe(streamId, (message) => {
+                console.log(message)
+            })
+            streamrClient.subscribe(streamId, (message) => {
+                console.log(message)
+            })
+            /*streamrClient.subscribe({ 
+                id: "0x14Ee183938ef7b3b071072CfCAb16D2a0D37B39D/uniclip",
+            }, msg => {
+                console.log(msg)
+            })*/
+            
+            /*let ws = this._ws = new self.WebSocket(dataSource.url);
             ws.binaryType = 'arraybuffer';
             ws.onopen = this._onWebSocketOpen.bind(this);
             ws.onclose = this._onWebSocketClose.bind(this);
             ws.onmessage = this._onWebSocketMessage.bind(this);
-            ws.onerror = this._onWebSocketError.bind(this);
+            ws.onerror = this._onWebSocketError.bind(this);*/
 
             this._status = LoaderStatus.kConnecting;
         } catch (e) {
@@ -76,14 +98,14 @@ class WebSocketLoader extends BaseLoader {
     }
 
     abort() {
-        let ws = this._ws;
+        /*let ws = this._ws;
         if (ws && (ws.readyState === 0 || ws.readyState === 1)) {  // CONNECTING || OPEN
             this._requestAbort = true;
             ws.close();
         }
 
         this._ws = null;
-        this._status = LoaderStatus.kComplete;
+        this._status = LoaderStatus.kComplete;*/
     }
 
     _onWebSocketOpen(e) {
