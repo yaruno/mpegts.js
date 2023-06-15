@@ -64,12 +64,6 @@ class WebSocketLoader extends BaseLoader {
             streamrClient.subscribe(streamId, (message) => {
                 console.log(message)
             })
-            streamrClient.subscribe(streamId, (message) => {
-                console.log(message)
-            })
-            streamrClient.subscribe(streamId, (message) => {
-                console.log(message)
-            })
             /*streamrClient.subscribe({ 
                 id: "0x14Ee183938ef7b3b071072CfCAb16D2a0D37B39D/uniclip",
             }, msg => {
